@@ -1,8 +1,4 @@
 #include "../inc/reader.h"
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <string.h>
 
 bool readELFMagic(const uint8_t buffer[], size_t size) {
