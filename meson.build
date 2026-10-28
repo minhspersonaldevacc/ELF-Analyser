@@ -22,4 +22,32 @@ reader_test = executable(
   link_with : reader,
 )
 
+ident = static_library(
+  'ident',
+  'src/ident.c',
+  include_directories : include_directories('inc'),
+)
+
+ident_test = executable(
+  'ident-test',
+  'test/unit/identTest.c',
+  c_args : ['-D_POSIX_C_SOURCE=200809L'],
+  link_with : [ident, reader],
+)
+
+header = static_library(
+  'header',
+  'src/header.c',
+  include_directories : include_directories('inc'),
+)
+
+header_test = executable(
+  'header-test',
+  'test/unit/headerTest.c',
+  c_args : ['-D_POSIX_C_SOURCE=200809L'],
+  link_with : [header, ident, reader],
+)
+
 test('reader', reader_test)
+test('ident', ident_test)
+test('header', header_test)
