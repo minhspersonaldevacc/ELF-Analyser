@@ -48,6 +48,20 @@ header_test = executable(
   link_with : [header, ident, reader],
 )
 
+program = static_library(
+  'program',
+  'src/program.c',
+  include_directories : include_directories('inc'),
+)
+
+program_test = executable(
+  'program-test',
+  'test/unit/programTest.c',
+  c_args : ['-D_POSIX_C_SOURCE=200809L'],
+  link_with : [program, reader],
+)
+
 test('reader', reader_test)
 test('ident', ident_test)
 test('header', header_test)
+test('program', program_test)
