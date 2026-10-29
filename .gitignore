@@ -1,4 +1,10 @@
 *.cast
 *.mp4
 
+Makefile
+build/
+build-asan-ubsan/
+build-sanitized/
+build-ubsan/
+
 recordings/
